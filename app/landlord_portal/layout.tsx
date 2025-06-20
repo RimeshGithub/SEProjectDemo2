@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import type { StaticImageData } from 'next/image'
 import defaultProfilePic from '../../public/avatar.jpeg'
+import './style.css'
 
 import {
   FaChartBar,

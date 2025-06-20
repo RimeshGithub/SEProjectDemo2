@@ -1,6 +1,5 @@
 'use client'
 
-import '../style.css'
 import { useRouter } from 'next/navigation'
 
 export default function Notifications() {

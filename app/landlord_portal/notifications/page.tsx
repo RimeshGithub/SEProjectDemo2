@@ -1,6 +1,5 @@
 'use client'
 
-import '../style.css'
 import Loading from '../../components/loading'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'

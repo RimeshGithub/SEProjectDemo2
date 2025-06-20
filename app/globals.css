@@ -382,6 +382,7 @@ a {
 .profile-email {
   font-size: 0.9rem;
   color: #64748b;
+  margin-top: 0.3rem;
 }
 
 .logout-btn {
