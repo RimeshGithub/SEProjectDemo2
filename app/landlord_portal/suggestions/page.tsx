@@ -29,6 +29,7 @@ export default function SuggestionPage() {
 
     const allSuggestions = snapshot.docs.map(docSnap => ({
       id: docSnap.id,
+      createdAt: docSnap.data().createdAt,
       ...docSnap.data()
     }))
 

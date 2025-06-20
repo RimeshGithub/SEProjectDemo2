@@ -62,7 +62,7 @@ export default function Properties() {
     const joinReqs = []
 
     for (const docSnap of snapshot.docs) {
-      const property = { id: docSnap.id, ...docSnap.data() }
+      const property = { id: docSnap.id, name: docSnap.data().name, ...docSnap.data() }
       props.push(property)
 
       const joinSnap = await getDocs(collection(db, 'properties', docSnap.id, 'joinRequests'))

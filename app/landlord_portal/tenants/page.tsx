@@ -13,6 +13,7 @@ import {
 import { onAuthStateChanged } from 'firebase/auth'
 import Image from 'next/image'
 import defaultProfilePic from '../../../public/avatar.jpeg'
+import { Tenant } from '../../types'
 
 export default function TenantsPage() {
   const [tenantsMap, setTenantsMap] = useState({})
@@ -73,7 +74,7 @@ export default function TenantsPage() {
             </tr>
           </thead>
           <tbody>
-            {Object.values(tenantsMap).map((tenant, idx) => (
+            {Object.values(tenantsMap).map((tenant : Tenant, idx) => (
               <tr key={idx}>
                 <td className="name">
                   <Image
