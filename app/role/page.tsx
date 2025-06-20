@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { auth, db } from '../../lib/firebase'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
 
 export default function Role() {
@@ -40,6 +40,15 @@ export default function Role() {
         displayName,
         role: route.includes('landlord') ? 'landlord' : 'tenant'
       })
+
+      if (route.includes('landlord')) {
+        await setDoc(doc(db, 'notifications', uid), {
+          joinRequestCount: 0,
+          maintenanceCount: 0,
+          suggestionCount: 0,
+          updatedAt: new Date()
+        })
+      } 
       router.push(`/${route}`)
     } catch (error) {
       console.error('Failed to update user role:', error)
