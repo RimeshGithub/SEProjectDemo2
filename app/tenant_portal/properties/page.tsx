@@ -100,7 +100,7 @@ export default function TenantDashboard() {
       await addDoc(requestsCol, newRequest)
 
       if (landlordUid) {
-        await updateDoc(doc(db, 'notifications', landlordUid), {
+        await updateDoc(doc(db, 'landlord_notifications', landlordUid), {
           joinRequestCount: increment(1)
         }).catch(() => { }) // Avoid crashing if doc doesn't exist
       }

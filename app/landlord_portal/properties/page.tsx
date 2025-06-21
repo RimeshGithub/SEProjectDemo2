@@ -128,7 +128,7 @@ export default function Properties() {
 
   const decrementJoinRequestCount = async () => {
     if (!user?.uid) return
-    const notifRef = doc(db, 'notifications', user.uid)
+    const notifRef = doc(db, 'landlord_notifications', user.uid)
     await updateDoc(notifRef, {
       joinRequestCount: increment(-1)
     }).catch(() => { })
@@ -162,12 +162,28 @@ export default function Properties() {
     const propertyRef = doc(db, 'properties', request.propertyId)
     await updateDoc(propertyRef, { tenants: updatedTenants })
 
+    await addDoc(collection(db, 'tenant_notifications'), {
+      tenantEmail: request.email,
+      propertyId: request.propertyId,
+      propertyName: request.propertyName,
+      status: 'Accepted',
+      createdAt: new Date()
+    })
+
     await deleteDoc(doc(db, 'properties', request.propertyId, 'joinRequests', request.id))
     await decrementJoinRequestCount()
     fetchAll(user.uid)
   }
 
   const handleRejectRequest = async (request) => {
+     await addDoc(collection(db, 'tenant_notifications'), {
+      tenantEmail: request.email,
+      propertyId: request.propertyId,
+      propertyName: request.propertyName,
+      status: 'Rejected',
+      createdAt: new Date()
+    })
+    
     await deleteDoc(doc(db, 'properties', request.propertyId, 'joinRequests', request.id))
     await decrementJoinRequestCount()
     fetchAll(user.uid)
@@ -208,7 +224,7 @@ export default function Properties() {
               {properties.map((property) => (
                 <li key={property.id} className="property-item">
                   <div className="property-header">
-                    <span>
+                    <span className="span">
                       <FaBuilding />
                       <h3>{property.name}</h3>
                     </span>
@@ -223,22 +239,22 @@ export default function Properties() {
                   </div>
 
                   <div className="property-divider">
-                    <span className="property-info">
+                    <span className="property-info span">
                       <FaMapMarked />
                       <h4>Location: {property.location}</h4>
                     </span>
-                    <span className="property-info">
+                    <span className="property-info span">
                       <FaUsers />
                       <h4>Tenants: {property.tenants?.length || 0}</h4>
                     </span>
-                    <span className="property-info">
+                    <span className="property-info span">
                       <FaDoorOpen />
                       <h4>Rooms: {property.tenants.length || 0} / {property.rooms || 0}</h4>
                     </span>
                   </div>
 
                   {property.description && (
-                    <span className="property-info">
+                    <span className="property-info span">
                       <FaInfoCircle /><h4>Description: {property.description}</h4>
                     </span>
                   )}

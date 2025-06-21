@@ -26,7 +26,7 @@ export default function Notifications() {
       setUser(currentUser)
 
       try {
-        const notifRef = doc(db, 'notifications', currentUser.uid)
+        const notifRef = doc(db, 'landlord_notifications', currentUser.uid)
         const notifSnap = await getDoc(notifRef)
 
         if (notifSnap.exists()) {
@@ -46,7 +46,7 @@ export default function Notifications() {
   const handleView = async (section: string) => {
     if (!user) return
 
-    const notifRef = doc(db, 'notifications', user.uid)
+    const notifRef = doc(db, 'landlord_notifications', user.uid)
 
     if (section === 'properties') {
       localStorage.setItem('landlordTab', 'requests')

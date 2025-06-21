@@ -109,7 +109,7 @@ export default function MaintenancePage() {
       createdAt: new Date()
     })
 
-    await updateDoc(doc(db, 'notifications', landlordUid), {
+    await updateDoc(doc(db, 'landlord_notifications', landlordUid), {
       maintenanceCount: increment(1),
       updatedAt: new Date()
     })
@@ -128,7 +128,7 @@ export default function MaintenancePage() {
 
       const property = joinedProperties.find(p => p.id === propertyId)
       if (property?.createdBy) {
-        const notifRef = doc(db, 'notifications', property.createdBy)
+        const notifRef = doc(db, 'landlord_notifications', property.createdBy)
         const notifSnap = await getDoc(notifRef)
 
         const currentCount = notifSnap.data()?.maintenanceCount || 0

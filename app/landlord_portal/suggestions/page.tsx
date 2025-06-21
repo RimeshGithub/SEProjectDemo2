@@ -53,8 +53,8 @@ export default function SuggestionPage() {
     try {
       await deleteDoc(doc(db, 'suggestions', suggestionId))
 
-      const notifRef = doc(db, 'notifications', user.uid)
-      const notifSnap = await getDocs(query(collection(db, 'notifications'), where('__name__', '==', user.uid)))
+      const notifRef = doc(db, 'landlord_notifications', user.uid)
+      const notifSnap = await getDocs(query(collection(db, 'landlord_notifications'), where('__name__', '==', user.uid)))
 
       if (!notifSnap.empty) {
         const notifData = notifSnap.docs[0].data()

@@ -42,7 +42,7 @@ export default function Role() {
       })
 
       if (route.includes('landlord')) {
-        await setDoc(doc(db, 'notifications', uid), {
+        await setDoc(doc(db, 'landlord_notifications', uid), {
           joinRequestCount: 0,
           maintenanceCount: 0,
           suggestionCount: 0,

@@ -86,7 +86,7 @@ export default function TenantsPage() {
                   {tenant.name}
                 </td>
                 <td>{tenant.email}</td>
-                <td>{tenant.properties.join(', ')}</td>
+                <td style={{ width: '400px' }}>{tenant.properties.join(', ')}</td>
               </tr>
             ))}
           </tbody>

@@ -48,7 +48,7 @@ export default function LandlordLayout({ children }: { children: ReactNode }) {
       })
 
       // Listen to notification count in real-time
-      const notifRef = doc(db, 'notifications', currentUser.uid)
+      const notifRef = doc(db, 'landlord_notifications', currentUser.uid)
       const unsubNotif = onSnapshot(notifRef, (snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.data()

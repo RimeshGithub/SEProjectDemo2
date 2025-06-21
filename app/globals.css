@@ -41,6 +41,12 @@ a {
   margin: 5rem 0;
 }
 
+.span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 
 /* Loading Symbol */
 .loading-container {
@@ -328,6 +334,7 @@ a {
   color: #f1f5f9;
   transition: background 0.2s;
   display: flex;
+  align-items: center;
   gap: 0.9rem;
 }
 
@@ -464,6 +471,9 @@ a {
   padding: 0.5rem 0.7rem;
   font-size: 1.3rem;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .notif-badge:hover {

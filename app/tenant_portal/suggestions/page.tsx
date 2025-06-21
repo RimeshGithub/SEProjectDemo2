@@ -105,7 +105,7 @@ export default function SuggestionPage() {
       landlordUid
     })
 
-    await updateDoc(doc(db, 'notifications', landlordUid), {
+    await updateDoc(doc(db, 'landlord_notifications', landlordUid), {
       suggestionCount: increment(1),
       updatedAt: new Date()
     })
@@ -121,7 +121,7 @@ export default function SuggestionPage() {
     try {
       await deleteDoc(doc(db, 'suggestions', id))
 
-      const notifRef = doc(db, 'notifications', landlordUid)
+      const notifRef = doc(db, 'landlord_notifications', landlordUid)
       const notifSnap = await getDoc(notifRef)
       const currentCount = notifSnap.data()?.suggestionCount || 0
 
